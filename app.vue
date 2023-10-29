@@ -23,16 +23,52 @@ function getSDL() {
   }
 }
 
-const { text, copied, isSupported, copy } = useClipboard();
+const { text, isSupported, copy } = useClipboard();
 </script>
 <template>
+  <nav class="border-[rgb(223, 227, 234)] border-b">
+    <div class="mx-auto max-w-screen-xl flex justify-between px-12 py-4">
+      <div class="flex">
+        <logo />
+
+        <ul class="space-x-6 mt-[6px] ml-12 hidden md:flex">
+          <li>
+            <a
+              href="https://hygraph.com/docs"
+              target="_blank"
+              class="text-[#2D3A5F] text-sm block mb-1 font-medium underline"
+              >Documentation</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://hygraph.com/developers"
+              target="_blank"
+              class="text-[#2D3A5F] text-sm block mb-1 font-medium underline"
+              >Developer hub</a
+            >
+          </li>
+        </ul>
+      </div>
+      <ul class="space-x-2 mt-[6px] hidden md:flex">
+        <li>
+          <a href="https://github.com/hygraph" target="_blank">
+            <github />
+          </a>
+        </li>
+        <li>
+          <a href="https://slack.hygraph.com" target="_blank"><slack /></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <main class="p-12 mx-auto max-w-screen-xl">
     <h1
-      class="text-[#081026] font-title font-bold text-4xl tracking-tight leading-5 mb-10"
+      class="text-[#081026] font-title font-bold text-2xl tracking-tight leading-5 mb-4"
     >
       JSON to SDL converter
     </h1>
-    <p class="leading-7 text-xl mb-10 text-[#2D3A5F]">
+    <p class="leading-7 text-md mb-10 text-[#2D3A5F]">
       This interface allows you to paste any JSON object and we will convert it
       to GraphQL's SDL format. <br />Read more in the
       <a
@@ -43,13 +79,13 @@ const { text, copied, isSupported, copy } = useClipboard();
       >.
     </p>
 
-    <div class="grid grid-cols-2 gap-8 h-[700px]">
-      <section>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <section class="mb-4 md:mb-auto">
         <label for="source" class="text-sm block mb-1 font-medium"
           >Input JSON *</label
         >
         <textarea
-          class="text-[#2D3A5F] text-sm leading-6 font-code p-4 border border-[#CED5E1] rounded-lg w-full h-full focus:border-[#5B4CFF] focus:outline-none mb-4"
+          class="text-[#2D3A5F] h-[250px] md:h-[500px] text-sm leading-6 font-code p-4 border border-[#CED5E1] rounded-lg w-full focus:border-[#5B4CFF] focus:outline-none mb-4"
           id="source"
           v-model="source"
           @input="getSDL"
@@ -70,7 +106,7 @@ const { text, copied, isSupported, copy } = useClipboard();
           >Output SDL</label
         >
         <textarea
-          class="text-sm leading-6 font-code p-4 border rounded-lg w-full h-full focus:border-[#5B4CFF] focus:outline-none mb-4"
+          class="text-sm leading-6 h-[250px] md:h-[500px] font-code p-4 border rounded-lg w-full focus:border-[#5B4CFF] focus:outline-none mb-4"
           v-model="sdl"
           :class="
             err
